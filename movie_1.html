@@ -3,64 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Doraemon: Nobita và Vũ trụ phiêu lưu ký</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f0f0f5;
-    }
-    .container {
-      max-width: 800px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    h1 {
-      color: #2c3e50;
-    }
-    .back-button {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #3498db;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-    }
-    .back-button:hover {
-      background-color: #2980b9;
-    }
-    iframe {
-      width: 100%;
-      height: 400px;
-      margin-top: 20px;
-      border-radius: 10px;
-    }
-  </style>
+  <title>Chi tiết phim Doraemon</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Doraemon: Nobita và Vũ trụ phiêu lưu ký (1981)</h1>
-    <img src="https://upload.wikimedia.org/wikipedia/vi/4/4d/Nobita_va_vu_tru_phieu_luu_ky.jpg" alt="Poster phim" />
-    
-    <p><strong>Năm phát hành:</strong> 1981</p>
-    <p>
-      Trong bộ phim này, Nobita và nhóm bạn sử dụng cánh cửa thần kỳ để du hành vào không gian. 
-      Họ gặp gỡ những sinh vật ngoài hành tinh, vướng vào một cuộc chiến liên hành tinh giữa các nền văn minh. 
-      Doraemon tiếp tục sử dụng những bảo bối để giải cứu nhóm bạn và giúp họ trở về an toàn.
-    </p>
+  <div class="container" id="movie-detail"></div>
 
-    <h3>Trailer</h3>
-    <iframe src="https://www.youtube.com/embed/VvovpxFdKIU" frameborder="0" allowfullscreen></iframe>
+  <script>
+    const movies = [
+      {
+        id: "1",
+        title: "Doraemon: Nobita và Vũ trụ phiêu lưu ký",
+        year: 1981,
+        description: "Trong bộ phim này, Nobita và nhóm bạn sử dụng cánh cửa thần kỳ để du hành vào không gian. Họ gặp gỡ những sinh vật ngoài hành tinh...",
+        poster: "https://thuviensach.vn/img/news/2024/06/larger/16170-doraemon-movie-nobita-va-vu-tru-phieu-luu-ky-1.jpg?v=3265",
+        trailer: "https://www.youtube.com/embed/RMv6yKBR7hU"
+      },
+      {
+        id: "2",
+        title: "Doraemon: Nobita và Đảo giấu vàng",
+        year: 2018,
+        description: "Một chuyến phiêu lưu truy tìm kho báu huyền thoại trên hòn đảo nguy hiểm.",
+        poster: "https://i.ytimg.com/vi/98IizofPo7s/maxresdefault.jpg",
+        trailer: "https://www.youtube.com/embed/RtKGs7IQQD8"
+      },
+      // ... thêm phim khác nếu muốn
+    ];
 
-    <a href="index.html" class="back-button">← Quay lại danh sách phim</a>
-  </div>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const movie = movies.find(m => m.id === id);
+    const container = document.getElementById("movie-detail");
+
+    if (movie) {
+      container.innerHTML = `
+        <h1>${movie.title} (${movie.year})</h1>
+        <img src="${movie.poster}" alt="Poster phim">
+        <p><strong>Năm phát hành:</strong> ${movie.year}</p>
+        <p>${movie.description}</p>
+        <h3>Trailer</h3>
+        <iframe src="${movie.trailer}" frameborder="0" allowfullscreen></iframe>
+        <a href="index.html" class="back-button">← Quay lại danh sách phim</a>
+      `;
+    } else {
+      container.innerHTML = `<p>Không tìm thấy phim có ID = ${id}</p>
+        <a href="index.html" class="back-button">← Quay lại danh sách phim</a>`;
+    }
+  </script>
 </body>
 </html>
